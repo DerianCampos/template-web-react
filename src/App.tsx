@@ -1,13 +1,14 @@
+import { Button } from "antd";
 import "./App.css";
 
 function App() {
+  const title = "Template Web React";
+
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank"></a>
-      </div>
-      <h1>Template Web React</h1>
+      <h1>{title}</h1>
       <p> This is a base web react</p>
+      <Button type="primary">Click me</Button>
     </>
   );
 }
