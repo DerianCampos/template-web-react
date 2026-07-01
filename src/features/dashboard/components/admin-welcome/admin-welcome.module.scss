@@ -1,0 +1,23 @@
+.card {
+  margin-bottom: 24px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.icon {
+  font-size: 32px;
+  color: var(--color-primary);
+}
+
+.title {
+  margin-bottom: 4px !important;
+}
+
+.stats {
+  margin-top: 16px;
+}

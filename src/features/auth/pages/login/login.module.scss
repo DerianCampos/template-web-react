@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 128px);
+  padding: 24px;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}

@@ -1,0 +1,33 @@
+.page {
+  max-width: 960px;
+}
+
+.pageTitle {
+  margin-bottom: 24px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.welcomeCard {
+  margin-bottom: 24px;
+}
+
+.welcomeHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.welcomeIcon {
+  font-size: 32px;
+  color: var(--color-primary);
+}
+
+.welcomeTitle {
+  margin-bottom: 4px !important;
+}

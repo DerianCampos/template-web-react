@@ -1,0 +1,41 @@
+.header {
+  background: var(--color-surface-white) !important;
+  border-bottom: 1px solid var(--color-surface-base);
+  box-shadow: var(--shadow-sm);
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.brand {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-primary) !important;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-primary-dark) !important;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.userBtn {
+  color: var(--color-text-primary);
+}

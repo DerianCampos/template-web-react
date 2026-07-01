@@ -1,14 +1,21 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import "./index.css";
-import App from "./app/App.tsx";
-import { store } from "./store/store";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+import AntDesignConfig from "@/app/theme/ant-design-config";
+import App from "@/app/App";
+import { store } from "@/app/store/store";
+import "@/styles/global.scss";
+import "@/styles/animations.scss";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
-      <App />
+      <AntDesignConfig>
+        <App />
+      </AntDesignConfig>
     </Provider>
   </StrictMode>,
 );

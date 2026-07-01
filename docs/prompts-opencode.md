@@ -57,9 +57,9 @@
 7. **Refactor the Project Structure**
 
 ```
-   Refactor the project to follow the proper structure:
-   - Move the `Home` component to the `/src/pages` folder.
-   - Ensure the `Home` component uses SCSS modules. Remove any inline styles and create a `Home.module.scss` file for its styles.
+   Refactor the project to follow the proper feature-slice structure:
+   - Move page components into `src/features/<feature>/pages/` directories.
+   - Ensure each component uses SCSS modules. Remove any inline styles and create a `*.module.scss` file for its styles.
 ```
 
 8. **Implement the Login Page**
@@ -70,74 +70,72 @@
    - A `Login` button to submit the form.
 ```
 
-change to `Plan` mode in opencode cli and execute the following prompt:
+Change to `Plan` mode in opencode cli and execute the following prompt:
 
 ```plaintext
-review the code inside `src/pages` is this scalable and maintanable. what about create a folder per page ?
+review the code inside `src/features` — is this scalable and maintainable? What about creating a folder per page?
 ```
 
 expected output:
 
-````Plan for Refactor: Folder per Page Structure
+````Plan for Refactor: Feature-Slice Structure
 Objective
-Refactor the current flat src/pages folder structure into a modularized "folder per page" structure. Each page will have its own directory containing:
-- Page component
-- Styles (CSS/SCSS module)
-- Optional index.ts for re-export
-- Space for page-specific tests and assets
+Refactor the current flat structure into a feature-based organization where each feature has its own directory containing pages, components, hooks, and API logic.
 ---
-Current Structure
-src/pages/
-├── Login.tsx
-├── Home.tsx
-├── Login.module.scss
-└── Home.module.scss
+Current Structure (before refactor)
+src/
+├── pages/
+│   ├── Login.tsx
+│   ├── Home.tsx
+│   ├── Login.module.scss
+│   └── Home.module.scss
 ---
 Proposed Structure
-src/pages/
-├── Login/
-│   ├── Login.tsx
-│   ├── Login.module.scss
-│   └── index.ts  (optional, for simplified imports)
-├── Home/
-│   ├── Home.tsx
-│   ├── Home.module.scss
-│   └── index.ts  (optional, for simplified imports)
+src/
+├── features/
+│   ├── auth/
+│   │   ├── pages/
+│   │   │   └── login/
+│   │   │       ├── index.tsx
+│   │   │       └── login.module.scss
+│   │   ├── components/
+│   │   ├── api/
+│   │   └── routes.tsx
+│   └── home/
+│       ├── pages/
+│       │   └── index.tsx
+│       └── routes.tsx
 ---
-### **Steps to Implement**
-#### 1. **Create Dedicated Folder for Each Page**
-   - Make folders for each page:
-     - `src/pages/Login/`
-     - `src/pages/Home/`
+**Steps to Implement**
+#### 1. **Create Feature Directories**
+   - Make feature directories for each domain:
+     - `src/features/auth/pages/login/`
+     - `src/features/home/pages/`
 #### 2. **Move Existing Files**
-   - Move `Login.tsx` and `Login.module.scss` into `src/pages/Login/`.
-   - Move `Home.tsx` and `Home.module.scss` into `src/pages/Home/`.
-#### 3. **Add `index.ts` for Each Page (Optional but Recommended)**
-   - Add an `index.ts` file in each page directory for re-export:
+   - Move `Login.tsx` and `Login.module.scss` into `src/features/auth/pages/login/`.
+   - Move `Home.tsx` and `Home.module.scss` into `src/features/home/pages/`.
+#### 3. **Add `routes.tsx` for Each Feature**
+   - Each feature declares its own routes using `RouteConfig`:
      ```typescript
-     // src/pages/Login/index.ts
-     export { default } from './Login';
-     ```
-     ```typescript
-     // src/pages/Home/index.ts
-     export { default } from './Home';
+     // src/features/auth/routes.tsx
+     import type { RouteConfig } from "@/app/routing/types";
+     export const authRoutes: RouteConfig[] = [
+       { path: "/login", element: <LoginPage />, guard: "guest" },
+     ];
      ```
 #### 4. **Update Imports**
-   - Update all internal/external imports of `Login` and `Home` to use the directories:
+   - Update all imports to use the new feature-based paths:
      ```diff
-     - import Login from './src/pages/Login.tsx';
-     + import Login from './src/pages/Login';
-
-     - import Home from './src/pages/Home.tsx';
-     + import Home from './src/pages/Home';
+     - import Login from './pages/Login';
+     + import Login from '@/features/auth/pages/login';
      ```
 #### 5. **Test the Refactor**
    - Ensure the application compiles and runs without errors:
-     - Run the development server `npm run dev` and verify UI functionality of `Home` and `Login`.
+     - Run the dev server `npm run dev` and verify UI functionality of `Home` and `Login`.
    - Check for broken imports.
 ````
 
-change to `frontend-react-agent` mode in opencode cli and execute the following prompt:
+change to `Plan` mode in opencode cli and execute the following prompt:
 
 ```plaintext
 proceed with the changes

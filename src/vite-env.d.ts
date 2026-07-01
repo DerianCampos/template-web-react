@@ -9,3 +9,14 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+// SCSS module declarations
+declare module "*.module.scss" {
+  const classes: { readonly [key: string]: string };
+  export default classes;
+}
+
+declare module "*.scss" {
+  const content: string;
+  export default content;
+}
